@@ -1,3 +1,6 @@
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { AppRoute, AuthorizationStatus } from "../../const";
+import PrivateRoute from "../privat-route/privat-route";
 import MainScreen from "../main-screen/main-screen";
 import OfferPage from "../offer-page/offer-page";
 import FavoritesPage from "../favorites-page/favorites-page";
@@ -12,16 +15,37 @@ type AppScreenProps = {
 };
 
 function App({ cardsCount }: AppScreenProps): JSX.Element {
+  const { Main, Favorites, Room, SignIn } = AppRoute;
   return (
     <>
-      <MainScreen cardsCount={cardsCount} />
-      <OfferPage />
-      <FavoritesPage />
-      <LoginPage />
-      <FavoritesPageEmpty />
-      <MainScreenEmpty />
-      <OfferPageNotLogged />
-      <Page404 />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={Main}>
+            <MainScreen cardsCount={cardsCount} />
+          </Route>
+
+          <Route exact path={Room}>
+            <OfferPage />
+          </Route>
+
+          <PrivateRoute
+            exact
+            path={Favorites}
+            render={() => <FavoritesPage />}
+            authorizationStatus={AuthorizationStatus.NoAuth}
+          ></PrivateRoute>
+          <Route exact path={SignIn}>
+            <LoginPage />
+          </Route>
+
+          <Route>
+            <Page404 />
+          </Route>
+          <FavoritesPageEmpty />
+          <MainScreenEmpty />
+          <OfferPageNotLogged />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }

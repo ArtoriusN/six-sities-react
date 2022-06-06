@@ -42,9 +42,8 @@ function Page404(): JSX.Element {
       <main className="page__main page__main--favorites page__main--favorites-empty">
         <div className="page__favorites-container container">
           <section className="favorites favorites--empty">
-            <h1 className="visually-hidden">404 Error</h1>
             <div className="favorites__status-wrapper">
-              <b className="favorites__status">Nothing yet saved.</b>
+              <h1>404 Error</h1>
               <p className="favorites__status-description">
                 Sorry, the specified page was not found.
               </p>
