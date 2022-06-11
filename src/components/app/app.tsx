@@ -9,19 +9,21 @@ import LoginPage from "../login-page/login-page";
 import MainScreenEmpty from "../main-screen-empty/main-screen-empty";
 import OfferPageNotLogged from "../offer-page-not-logged/offer-page-not-logged";
 import Page404 from "../page-404/page-404";
+import { Offers } from "../../types/offers";
 
 type AppScreenProps = {
   cardsCount: number;
+  offers: Offers;
 };
 
-function App({ cardsCount }: AppScreenProps): JSX.Element {
+function App({ cardsCount, offers }: AppScreenProps): JSX.Element {
   const { Main, Favorites, Room, SignIn } = AppRoute;
   return (
     <>
       <BrowserRouter>
         <Switch>
           <Route exact path={Main}>
-            <MainScreen cardsCount={cardsCount} />
+            <MainScreen offers={offers} cardsCount={cardsCount} />
           </Route>
 
           <Route exact path={Room}>
