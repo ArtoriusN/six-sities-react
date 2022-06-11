@@ -1,4 +1,3 @@
-import OfferCard from "../offer-card/offer-card";
 import OfferList from "../offer-list/offer-list";
 import { Offers } from "../../types/offers";
 

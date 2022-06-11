@@ -33,8 +33,8 @@ function App({ cardsCount, offers }: AppScreenProps): JSX.Element {
           <PrivateRoute
             exact
             path={Favorites}
-            render={() => <FavoritesPage />}
-            authorizationStatus={AuthorizationStatus.NoAuth}
+            render={() => <FavoritesPage offers={offers} />}
+            authorizationStatus={AuthorizationStatus.Auth}
           ></PrivateRoute>
           <Route exact path={SignIn}>
             <LoginPage />
