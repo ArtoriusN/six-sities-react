@@ -1,4 +1,5 @@
 import OfferList from "../offer-list/offer-list";
+import FavoritesList from "../favorites-list/favorites-list";
 import { Offers } from "../../types/offers";
 
 type FavoritesPageProps = {
@@ -60,7 +61,7 @@ function FavoritesPage({ offers }: FavoritesPageProps): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <OfferList offers={offers} />
+                  <FavoritesList offers={offers} />
                 </div>
               </li>
 
