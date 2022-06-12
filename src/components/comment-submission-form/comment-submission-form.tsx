@@ -1,16 +1,17 @@
-import { Offers } from "../../types/offers";
-import { useState } from "react";
-import FavoritesCard from "../favorites-card/favorites-card";
-
-type CommentSubmissionFormProps = {
-  offers: Offers;
-};
+import { useState, FormEvent } from "react";
 
 function CommentSubmissionForm(): JSX.Element {
   const [reviewValue, setReviewValue] = useState("");
-  const [reviewSubmit, setReviewSubmit] = useState("");
+  const [reviewRating, setReviewRating] = useState(0);
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={(evt: FormEvent<HTMLFormElement>) => {
+        evt.preventDefault();
+      }}
+    >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -21,6 +22,7 @@ function CommentSubmissionForm(): JSX.Element {
           value="5"
           id="5-stars"
           type="radio"
+          onChange={(e) => setReviewRating(+e.target.value)}
         />
         <label
           htmlFor="5-stars"
@@ -37,6 +39,7 @@ function CommentSubmissionForm(): JSX.Element {
           value="4"
           id="4-stars"
           type="radio"
+          onChange={(e) => setReviewRating(+e.target.value)}
         />
         <label
           htmlFor="4-stars"
@@ -53,6 +56,7 @@ function CommentSubmissionForm(): JSX.Element {
           value="3"
           id="3-stars"
           type="radio"
+          onChange={(e) => setReviewRating(+e.target.value)}
         />
         <label
           htmlFor="3-stars"
@@ -70,6 +74,7 @@ function CommentSubmissionForm(): JSX.Element {
           value="2"
           id="2-stars"
           type="radio"
+          onChange={(e) => setReviewRating(+e.target.value)}
         />
         <label
           htmlFor="2-stars"
@@ -87,6 +92,7 @@ function CommentSubmissionForm(): JSX.Element {
           value="1"
           id="1-star"
           type="radio"
+          onChange={(e) => setReviewRating(+e.target.value)}
         />
         <label
           htmlFor="1-star"
@@ -115,7 +121,7 @@ function CommentSubmissionForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!reviewValue}
+          disabled={!(reviewValue && reviewRating)}
         >
           Submit
         </button>
