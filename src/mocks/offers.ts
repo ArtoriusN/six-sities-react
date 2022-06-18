@@ -9,8 +9,8 @@ export const offers = [
       name: "Amsterdam",
     },
     location: {
-      latitude: 30.370216938496378,
-      longitude: 7.873877537499948,
+      latitude: 52.36603601338549,
+      longitude: 4.83192456068383,
       zoom: 8,
     },
     host: {
@@ -48,8 +48,8 @@ export const offers = [
       name: "Cologne",
     },
     location: {
-      latitude: 40.370216938496378,
-      longitude: 3.873877537499948,
+      latitude: 50.94055085364633,
+      longitude: 6.948523349228246,
       zoom: 8,
     },
     host: {
@@ -83,8 +83,8 @@ export const offers = [
       name: "Hamburg",
     },
     location: {
-      latitude: 25.370216938496378,
-      longitude: 14.873877537499948,
+      latitude: 53.57140094622949,
+      longitude: 9.97708971971144,
       zoom: 8,
     },
     host: {
@@ -119,8 +119,8 @@ export const offers = [
       name: "Hamburg",
     },
     location: {
-      latitude: 45.370216938496378,
-      longitude: 8.873877537499948,
+      latitude: 53.56095853841781,
+      longitude: 10.025635111872354,
       zoom: 8,
     },
     host: {
@@ -155,8 +155,8 @@ export const offers = [
       name: "Amsterdam",
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.396049812066444,
+      longitude: 4.933312651209122,
       zoom: 8,
     },
     host: {

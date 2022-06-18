@@ -3,6 +3,7 @@ import ReviewsList from "../reviews-list/reviews-list";
 import { Reviews } from "../../types/reviews";
 import OfferList from "../offer-list/offer-list";
 import { Offers } from "../../types/offers";
+import Map from "../map/map";
 
 type OfferPageProps = {
   offers: Offers;
@@ -194,7 +195,7 @@ function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <Map offers={offers} selectedPoint={undefined} />
         </section>
         <div className="container">
           <section className="near-places places">

@@ -5,10 +5,6 @@ type ReviewsItemProps = {
 };
 
 function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
-  // const formatter = new Intl.DateTimeFormat("en", { month: "short" });
-  // const month1 = formatter.format(new Date());
-  // const month2 = formatter.format(new Date(review.date));
-  // console.log(`${month1} and ${month2}`); // current month in French and "juin".
   const date = new Date(review.date); // 2009-11-10
   const monthYear = date.toLocaleString("default", {
     month: "long",

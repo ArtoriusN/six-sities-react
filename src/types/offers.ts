@@ -11,11 +11,13 @@ export type Host = {
   name: string;
 };
 
+export type City = {
+  location: Location;
+  name: string;
+};
+
 export type Offer = {
-  city: {
-    location: Location;
-    name: string;
-  };
+  city: City;
   location: Location;
   host: Host;
   id: number;
