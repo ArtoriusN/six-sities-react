@@ -10,13 +10,15 @@ import MainScreenEmpty from "../main-screen-empty/main-screen-empty";
 import OfferPageNotLogged from "../offer-page-not-logged/offer-page-not-logged";
 import Page404 from "../page-404/page-404";
 import { Offers } from "../../types/offers";
+import { Reviews } from "../../types/reviews";
 
 type AppScreenProps = {
   cardsCount: number;
   offers: Offers;
+  reviews: Reviews;
 };
 
-function App({ cardsCount, offers }: AppScreenProps): JSX.Element {
+function App({ cardsCount, offers, reviews }: AppScreenProps): JSX.Element {
   const { Main, Favorites, Room, SignIn } = AppRoute;
   return (
     <>
@@ -27,7 +29,7 @@ function App({ cardsCount, offers }: AppScreenProps): JSX.Element {
           </Route>
 
           <Route exact path={Room}>
-            <OfferPage />
+            <OfferPage offers={offers} reviews={reviews} />
           </Route>
 
           <PrivateRoute
