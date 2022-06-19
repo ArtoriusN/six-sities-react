@@ -1,5 +1,6 @@
 import OfferList from "../offer-list/offer-list";
 import { Offers } from "../../types/offers";
+import Map from "../map/map";
 
 type MainScreenProps = {
   cardsCount: number;
@@ -46,7 +47,6 @@ function MainScreen({ cardsCount, offers }: MainScreenProps): JSX.Element {
           </div>
         </div>
       </header>
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -121,7 +121,9 @@ function MainScreen({ cardsCount, offers }: MainScreenProps): JSX.Element {
               <OfferList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map offers={offers} selectedPoint={undefined} />
+              </section>
             </div>
           </div>
         </div>

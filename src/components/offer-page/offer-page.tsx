@@ -195,7 +195,9 @@ function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
               </section>
             </div>
           </div>
-          <Map offers={offers} selectedPoint={undefined} />
+          <div style={{ height: "500px" }}>
+            <Map offers={offers} selectedPoint={undefined} />
+          </div>
         </section>
         <div className="container">
           <section className="near-places places">

@@ -10,7 +10,6 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
     month: "long",
     year: "numeric",
   });
-  console.log(monthYear);
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

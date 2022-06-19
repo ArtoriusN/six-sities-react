@@ -44,7 +44,7 @@ function Map({ offers, selectedPoint }: MapProps): JSX.Element {
     }
   }, [map, offers, selectedPoint]);
 
-  return <div style={{ height: "500px" }} ref={mapRef}></div>;
+  return <div style={{ minHeight: "100%" }} ref={mapRef}></div>;
 }
 
 export default Map;
