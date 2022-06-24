@@ -1,5 +1,5 @@
 import OfferList from "../offer-list/offer-list";
-import { Offer } from "../../types/offers";
+import { Offers } from "../../types/offers";
 import Map from "../map/map";
 import LocationList from "../location-list/location-list";
 import { CITIES } from "../../const";
@@ -8,7 +8,7 @@ import { connect, ConnectedProps } from "react-redux";
 import MainScreenEmpty from "../main-screen-empty/main-screen-empty";
 
 type MainScreenProps = {
-  offers: Offer[];
+  offers: Offers;
 };
 
 const mapStateToProps = ({ selectedCity, highlightedOffer }: State) => ({
@@ -20,7 +20,7 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = MainScreenProps & PropsFromRedux;
 
-const getOffersInCity = (offers: Offer[], cityName: string) =>
+const getOffersInCity = (offers: Offers, cityName: string) =>
   offers.filter((offer) => offer.city.name === cityName);
 
 function MainScreen({
@@ -107,11 +107,11 @@ function MainScreen({
                   </li>
                 </ul>
               </form>
-              <OfferList offers={offers} />
+              <OfferList offers={offersInCity} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offers} selectedPoint={undefined} />
+                <Map offers={offersInCity} selectedPoint={undefined} />
               </section>
             </div>
           </div>
