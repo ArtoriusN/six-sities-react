@@ -244,7 +244,7 @@ export const offers = [
     isFavorite: true,
     isPremium: false,
     maxAdults: 4,
-    previewImage: "img/apartment-small-04.jpg",
+    previewImage: "img/apartment-small-03.jpg",
     price: 120,
     rating: 4.8,
     title: "Beautiful & luxurious studio at great location",
