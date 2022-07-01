@@ -1,11 +1,12 @@
 import { Actions, ActionType } from "../types/action";
 import { State } from "../types/state";
-import { INITIAL_CITY_NAME } from "../const";
+import { INITIAL_CITY_NAME, SortType } from "../const";
 import { offers } from "../mocks/offers";
 
 const initialState = {
   selectedCity: INITIAL_CITY_NAME,
   offers: offers,
+  currentSort: SortType.POPULAR,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -21,6 +22,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
           (offer) => offer.id === action.payload
         ),
       };
+    case ActionType.ChangeSort:
+      return { ...state, currentSort: action.payload };
 
     default:
       return state;

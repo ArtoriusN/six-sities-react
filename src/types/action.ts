@@ -4,6 +4,7 @@ export enum ActionType {
   ChangeCity = "app/ChangeCity",
   ChangeItemsList = "app/ChangeItemsList",
   ChangeHighlightedOffer = "app/ChangeHighlightedOffer",
+  ChangeSort = "app/ChangeSort",
 }
 
 export type ChangeCityAction = {
@@ -21,7 +22,13 @@ export type ChangeHighlightedOfferAction = {
   payload: number | null;
 };
 
+export type ChangeSortAction = {
+  type: ActionType.ChangeSort;
+  payload: string;
+};
+
 export type Actions =
   | ChangeCityAction
   | ChangeItemsListAction
-  | ChangeHighlightedOfferAction;
+  | ChangeHighlightedOfferAction
+  | ChangeSortAction;

@@ -1,8 +1,6 @@
 import { Offers } from "../../types/offers";
 import OfferCard from "../offer-card/offer-card";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { AppRoute } from "../../const";
 
 type OfferListProps = {
   offers: Offers;

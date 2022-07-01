@@ -3,6 +3,7 @@ import {
   ChangeCityAction,
   ChangeItemsListAction,
   ChangeHighlightedOfferAction,
+  ChangeSortAction,
 } from "../types/action";
 import { Offer } from "../types/offers";
 
@@ -23,4 +24,9 @@ export const changeHighlightedOfferAction = (
 ): ChangeHighlightedOfferAction => ({
   type: ActionType.ChangeHighlightedOffer,
   payload: id,
+});
+
+export const changeSortAction = (sort: string): ChangeSortAction => ({
+  type: ActionType.ChangeSort,
+  payload: sort,
 });
