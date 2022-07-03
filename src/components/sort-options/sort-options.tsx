@@ -22,8 +22,10 @@ function SortOptions({
   onSortChange,
 }: PropsFromRedux): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
+  const sortTypes = Object.keys(SortType);
   const onSortOptionClick = (sortType: string): void => {
     sortType !== currentSort && onSortChange(sortType);
+    setIsOpen(false);
   };
   return (
     <form className="places__sorting" action="#" method="get">
@@ -43,46 +45,18 @@ function SortOptions({
           isOpen ? `places__options--opened` : ""
         }`}
       >
-        <li
+        {sortTypes.map((sortType) => (
+          <li
+          key={sortType}
           className={`places__option ${
-            currentSort === SortType.POPULAR ? `places__option--active` : ""
+            currentSort === SortType[sortType] ? `places__option--active` : ""
           }`}
-          onClick={() => onSortOptionClick(SortType.POPULAR)}
+          onClick={() => onSortOptionClick(SortType[sortType])}
           tabIndex={0}
         >
-          Popular
+          {SortType[sortType]}
         </li>
-        <li
-          className={`places__option ${
-            currentSort === SortType.PRICE_DESCENDING
-              ? `places__option--active`
-              : ""
-          }`}
-          onClick={() => onSortOptionClick(SortType.PRICE_DESCENDING)}
-          tabIndex={0}
-        >
-          Price: low to high
-        </li>
-        <li
-          className={`places__option ${
-            currentSort === SortType.PRICE_ASCENDING
-              ? `places__option--active`
-              : ""
-          }`}
-          onClick={() => onSortOptionClick(SortType.PRICE_ASCENDING)}
-          tabIndex={0}
-        >
-          Price: high to low
-        </li>
-        <li
-          className={`places__option ${
-            currentSort === SortType.TOP_RATED ? `places__option--active` : ""
-          }`}
-          onClick={() => onSortOptionClick(SortType.TOP_RATED)}
-          tabIndex={0}
-        >
-          Top rated first
-        </li>
+        ))}
       </ul>
     </form>
   );

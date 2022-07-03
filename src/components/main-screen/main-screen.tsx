@@ -8,14 +8,16 @@ import { connect, ConnectedProps } from "react-redux";
 import MainScreenEmpty from "../main-screen-empty/main-screen-empty";
 import Header from "../header/header";
 import SortOptions from "../sort-options/sort-options";
+import { Sort } from "../../utils";
+import useHighlightedOffer from "../../hooks/useHightailedOffer";
 
 type MainScreenProps = {
   offers: Offers;
 };
 
-const mapStateToProps = ({ selectedCity, highlightedOffer }: State) => ({
+const mapStateToProps = ({ selectedCity, currentSort }: State) => ({
   selectedCity,
-  highlightedOffer,
+  currentSort,
 });
 
 const connector = connect(mapStateToProps);
@@ -28,9 +30,12 @@ const getOffersInCity = (offers: Offers, cityName: string) =>
 function MainScreen({
   offers,
   selectedCity,
-  highlightedOffer,
+  currentSort,
 }: ConnectedComponentProps): JSX.Element {
-  const offersInCity = getOffersInCity(offers, selectedCity);
+  const sortedOffers = Sort[currentSort](offers);
+  const offersInCity = getOffersInCity(sortedOffers, selectedCity);
+  const [highlightedOffer, onChangeHighlightedOffer] =
+    useHighlightedOffer(offersInCity);
 
   return (
     <div className="page page--gray page--main">
@@ -49,7 +54,16 @@ function MainScreen({
                   {offersInCity.length} places to stay in {selectedCity}
                 </b>
                 <SortOptions />
-                <OfferList offers={offersInCity} />
+                <div className="cities__places-list places__list tabs__content">
+                  <OfferList
+                    offers={offersInCity}
+                    className="cities__place-card"
+                    imageClassName="cities__image-wrapper"
+                    imageWidth={260}
+                    imageHeight={200}
+                    onChangeHighlightedOffer={onChangeHighlightedOffer}
+                  />
+                </div>
               </section>
             ) : (
               <MainScreenEmpty />
@@ -57,7 +71,10 @@ function MainScreen({
             <div className="cities__right-section">
               {offersInCity.length ? (
                 <section className="cities__map map">
-                  <Map offers={offersInCity} selectedPoint={undefined} />
+                  <Map
+                    offers={offersInCity}
+                    highlightedOffer={highlightedOffer}
+                  />
                 </section>
               ) : null}
             </div>

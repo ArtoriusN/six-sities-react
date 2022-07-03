@@ -35,9 +35,21 @@ function App({ offers, reviews }: ConnectedComponentProps): JSX.Element {
             <MainScreen offers={offers} />
           </Route>
 
-          <Route exact path={Room}>
-            <OfferPage offers={offers} reviews={reviews} />
-          </Route>
+          <Route
+            exact
+            path={Room}
+            render={(serviceProps) => {
+              const id = Number(serviceProps.match.params.id);
+              const offer = offers.find((item) => item.id === id);
+              return (
+                <OfferPage
+                  offer={offer}
+                  reviews={reviews}
+                  authorizationStatus={AuthorizationStatus.Auth}
+                />
+              );
+            }}
+          />
 
           <PrivateRoute
             exact

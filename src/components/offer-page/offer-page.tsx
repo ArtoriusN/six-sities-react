@@ -2,16 +2,39 @@ import CommentSubmissionForm from "../comment-submission-form/comment-submission
 import ReviewsList from "../reviews-list/reviews-list";
 import { Reviews } from "../../types/reviews";
 import OfferList from "../offer-list/offer-list";
-import { Offers } from "../../types/offers";
+import { Offer } from "../../types/offers";
+import { offers } from "../../mocks/offers";
 import Map from "../map/map";
 import Header from "../header/header";
+import Page404 from "../page-404/page-404";
 
 type OfferPageProps = {
-  offers: Offers;
+  offer?: Offer;
   reviews: Reviews;
+  authorizationStatus: string;
 };
 
-function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
+function OfferPage(props: OfferPageProps): JSX.Element {
+  const { offer, reviews, authorizationStatus } = props;
+
+  if (!offer) {
+    return <Page404 />;
+  }
+
+  const {
+    id,
+    isFavorite,
+    isPremium,
+    price,
+    title,
+    type,
+    rating,
+    bedrooms,
+    maxAdults,
+  } = offer;
+
+  const nearOffers = offers.filter((item) => item.id !== id);
+
   return (
     <div className="page">
       <Header />
@@ -161,7 +184,7 @@ function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
             </div>
           </div>
           <div style={{ height: "500px" }}>
-            <Map offers={offers} selectedPoint={undefined} />
+            <Map offers={offers} highlightedOffer={offer} />
           </div>
         </section>
         <div className="container">
@@ -169,7 +192,13 @@ function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OfferList offers={offers} />
+            <OfferList
+              offers={offers}
+              className="near-places__card"
+              imageClassName="near-places__image-wrapper"
+              imageWidth={260}
+              imageHeight={200}
+            />
           </section>
         </div>
       </main>

@@ -30,3 +30,13 @@ export const changeSortAction = (sort: string): ChangeSortAction => ({
   type: ActionType.ChangeSort,
   payload: sort,
 });
+
+export const getOffersAction = (offers: Offer[]) => ({
+  type: ActionType.GetAllOffers,
+  payload: offers,
+});
+
+export type Actions =
+  | ReturnType<typeof changeCityAction>
+  | ReturnType<typeof getOffersAction>
+  | ReturnType<typeof changeSortAction>;

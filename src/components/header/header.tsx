@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AppRoute } from "../../const";
 
-function Header() {
+function Header(): JSX.Element {
   return (
     <header className="header">
       <div className="container">
@@ -9,7 +9,7 @@ function Header() {
           <div className="header__left">
             <Link
               className="header__logo-link header__logo-link--active"
-              to={`${AppRoute.Main}`}
+              to={AppRoute.Main}
             >
               <img
                 className="header__logo"
@@ -25,7 +25,7 @@ function Header() {
               <li className="header__nav-item user">
                 <Link
                   className="header__nav-link header__nav-link--profile"
-                  to={`${AppRoute.Favorites}`}
+                  to={AppRoute.Favorites}
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   <span className="header__user-name user__name">

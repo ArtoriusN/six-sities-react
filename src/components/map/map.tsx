@@ -1,13 +1,14 @@
 import { useRef, useEffect } from "react";
 import { Icon, Marker } from "leaflet";
 import useMap from "../../hooks/useMap";
-import { Offers } from "../../types/offers";
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from "../../const";
+import { Offers, Offer } from "../../types/offers";
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AppRoute } from "../../const";
 import "leaflet/dist/leaflet.css";
+import { generatePath, useHistory } from "react-router-dom";
 
 type MapProps = {
   offers: Offers;
-  selectedPoint: undefined;
+  highlightedOffer?: Offer | undefined;
 };
 
 const defaultCustomIcon = new Icon({
@@ -22,27 +23,39 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map({ offers, selectedPoint }: MapProps): JSX.Element {
+function Map({ offers, highlightedOffer }: MapProps): JSX.Element {
   const { city } = offers[0];
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const history = useHistory();
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       offers.forEach((offer) => {
+        const { id, location } = offer;
         const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
+          lat: location.latitude,
+          lng: location.longitude,
         });
+
+        marker.on("click", () =>
+          history.push(generatePath(AppRoute.Room, { id }))
+        );
+        markers.push(marker);
 
         marker
           .setIcon(
-            selectedPoint !== undefined ? currentCustomIcon : defaultCustomIcon
+            offer.id === highlightedOffer?.id
+              ? currentCustomIcon
+              : defaultCustomIcon
           )
           .addTo(map);
       });
     }
-  }, [map, offers, selectedPoint]);
+    return () => markers.forEach((marker) => marker.remove());
+  }, [map, offers, highlightedOffer, history]);
 
   return <div style={{ minHeight: "100%" }} ref={mapRef}></div>;
 }

@@ -22,11 +22,23 @@ export const CITIES = [
   "Dusseldorf",
 ];
 
-export const SortType = {
-  POPULAR: "POPULAR",
-  PRICE_DESCENDING: "PRICE_DESCENDING",
-  PRICE_ASCENDING: "PRICE_ASCENDING",
-  TOP_RATED: "TOP_RATED",
+export const SortType: { [key: string]: string } = {
+  POPULAR: "Popular",
+  PRICE_DESCENDING: "Price: high to low",
+  PRICE_ASCENDING: "Price: low to high",
+  TOP_RATED: "Top rated first",
+};
+
+export const Rating = {
+  MAX_RATING_PERCENT: 100,
+  RATING_MULTIPLIER: 20,
+};
+
+export const OfferType: { [key: string]: string } = {
+  room: "Private room",
+  house: "House",
+  apartment: "Apartment",
+  hotel: "Hotel",
 };
 
 export const URL_MARKER_DEFAULT =

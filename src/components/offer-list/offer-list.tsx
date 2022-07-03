@@ -1,25 +1,44 @@
 import { Offers } from "../../types/offers";
 import OfferCard from "../offer-card/offer-card";
-import { useState } from "react";
 
 type OfferListProps = {
   offers: Offers;
+  className: string;
+  imageClassName: string;
+  infoClassName?: string;
+  imageWidth: number;
+  imageHeight: number;
+  onChangeHighlightedOffer?: (id: number | null) => void;
 };
 
-function OfferList({ offers }: OfferListProps): JSX.Element {
-  const [onSelect, setOnSelect] = useState(0);
+function OfferList(props: OfferListProps): JSX.Element {
+  const {
+    offers,
+    className,
+    imageClassName,
+    infoClassName,
+    imageWidth,
+    imageHeight,
+    onChangeHighlightedOffer,
+  } = props;
+
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {offers.map((offer) => {
         return (
           <OfferCard
-            offer={offer}
             key={offer.id}
-            onSelect={() => setOnSelect(offer.id)}
+            offer={offer}
+            className={className}
+            imageClassName={imageClassName}
+            infoClassName={infoClassName}
+            imageHeight={imageHeight}
+            imageWidth={imageWidth}
+            onChangeHighlightedOffer={onChangeHighlightedOffer}
           />
         );
       })}
-    </div>
+    </>
   );
 }
 
